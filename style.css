@@ -1,0 +1,373 @@
+body {
+    font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
+    /* background-color: #0f080f !important; */
+}
+
+@media (min-width: 1200px) {
+    body .container {
+        max-width: 100%;
+    }
+}
+
+
+/* extra large devices */
+
+@media screen and (min-width: 1800px) {
+    body .container {
+        max-width: 70%;
+    }
+}
+
+.container .row .col-3 {
+    max-width: 230px;
+}
+
+
+/*  SIDE BAR */
+
+#outerMenuContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: max-content;
+}
+
+#outerMenuContainer:hover {
+    color: #1DA1F2 !important;
+    background: #CFE7F6;
+    border-radius: 25px;
+    text-decoration: none;
+    opacity: 0.7;
+    /* padding: 5px 0px 5px 3px;
+    width: max-content; */
+}
+
+#outerMenuContainer:hover a {
+    color: #1DA1F2 !important;
+}
+
+#outerMenuContainer a {
+    text-decoration: none;
+    color: black;
+}
+
+
+/* TREDDINGS + WHO TO FOLLOW */
+
+#leftNav {
+    display: flex;
+    justify-content: space-between;
+    font-size: larger;
+    font-weight: 800;
+    background-color: white;
+}
+
+#rightNav {
+    min-width: 380px;
+    background-color: white;
+}
+
+#rightNav .input-group-prepend {
+    background-color: white !important;
+    color: white !important;
+}
+
+#search {
+    border-radius: 30px;
+    height: 10px;
+    padding: 20px;
+    position: relative;
+    width: 349px;
+    background-color: #e6ecf0;
+}
+
+#trendings {
+    min-width: 380px;
+}
+
+#trendings .list-group-item {
+    background-color: #f5f8fa;
+}
+
+#trendings .content {
+    cursor: pointer;
+}
+
+#trendings .trends-header {
+    font-weight: 800;
+    font-size: larger;
+}
+
+#trendings .content:hover {
+    filter: brightness(97%)
+}
+
+#trendings ul li .hashtag {
+    font-weight: 700;
+}
+
+#moreToFollowImg {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.fa-badge-check {
+    color: rgba(29, 161, 242, 1.00);
+}
+
+.followBtn {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 25px;
+    color: #1DA1F2;
+    font-family: Arial;
+    font-size: 17px;
+    font-weight: 200;
+    padding: 3px;
+    background-color: #FFFFFF;
+    border: solid #1DA1F2 1px;
+    text-decoration: none;
+    /* display: inline-block; */
+    cursor: pointer;
+    text-align: center;
+}
+
+.followBtn:hover {
+    color: #1DA1F2;
+    background: #CFE7F6;
+    border-radius: 25px;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+#whoToFollow {
+    min-width: 380px;
+}
+
+#whoToFollow .list-group-item {
+    background-color: #f5f8fa;
+}
+
+#whoToFollow .content {
+    cursor: pointer;
+}
+
+#whoToFollow .content:hover {
+    filter: brightness(97%)
+}
+
+#whoToFollow .row .col-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#whoToFollow .row .col-6 .hashtag {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#whoToFollow .row .col-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#whoToFollow .whoToFollow-header {
+    font-weight: 800;
+    font-size: larger;
+}
+
+h6 {
+    font-weight: 700;
+}
+
+#content .functionBar {
+    display: flex;
+    justify-content: space-between;
+}
+
+#contentArea #content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#tweetArea[placeholder]:empty::before,
+#tweetArea-modal[placeholder]:empty::before {
+    content: attr(placeholder);
+    color: gray;
+    opacity: 0.7;
+}
+
+#tweetArea[placeholder]:empty:focus::before,
+#tweetArea-modal[placeholder]:empty:focus::before {
+    content: "";
+    content: attr(placeholder);
+    color: gray;
+    opacity: 0.7;
+}
+
+#tweetArea[contenteditable]:focus,
+#tweetArea-modal[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+
+#tweetArea,
+#tweetArea-modal {
+    min-height: 50px;
+}
+
+.tweetbtn {
+    height: 50px;
+    width: 200px;
+    border-radius: 40px;
+    background-color: rgb(29, 161, 242);
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 0px;
+    margin-top: 10px;
+}
+
+#inputArea .inputArea-tweetbtn {
+    width: 100px;
+    height: 35px;
+    font-size: medium;
+}
+
+#inputArea .utilityBar,
+#retweetModal .utilityBar {
+    display: flex;
+    justify-content: space-between;
+}
+
+#retweetModal .utilityBar {
+    align-items: baseline;
+}
+
+#inputArea .utilityBar input,
+#retweetModal .utilityBar input {
+    display: none;
+}
+
+#inputArea .utilityBar .img-upload i,
+#retweetModal .utilityBar .img-upload i {
+    cursor: pointer;
+}
+
+#inputArea .utilityBar .img-upload label,
+#retweetModal .utilityBar .img-upload label {
+    margin-bottom: 0px;
+}
+
+#inputArea .utilityBar .icons,
+#retweetModal .utilityBar .icons {
+    color: #16a2f2;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tweetbtn:hover {
+    background-color: rgba(26, 145, 218);
+}
+
+#inputArea #header {
+    padding-bottom: 15px;
+    border-bottom: 10px solid #e6ecf0;
+    /* height: 5px;
+    background-color: #e6ecf0;
+    width: 100%; */
+}
+
+#image-container {
+    display: flex;
+}
+
+#image-container-tweet {
+    display: flex;
+}
+
+@media (min-width: 1200px) {
+    #my-img {
+        width: 275px;
+    }
+}
+
+
+@media screen and (min-width: 1800px) {
+    #my-img {
+        width: 290px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #tweet-img {
+        width: 220px;
+    }
+}
+
+
+/* extra large devices */
+
+@media screen and (min-width: 1800px) {
+    #tweet-img {
+        width: 250px;
+    }
+}
+
+#tweetTitle {
+    font-weight: bold;
+}
+
+#tweetAt,
+#tweetTime {
+    color: gray;
+    opacity: 0.9;
+}
+
+#content:hover {
+    background-color: #f5f8fa;
+}
+
+#image-container-tweet {
+    border-color: #e6ecf0;
+    border-width: 10px;
+    border-style: solid;
+    border-radius: 20px;
+}
+
+.comment-func:hover {
+    color: #16a2f2;
+    cursor: pointer;
+}
+
+.retweet-func:hover {
+    color: lightgreen;
+    cursor: pointer;
+}
+
+.like-func:hover {
+    color: lightpink;
+    cursor: pointer;
+}
+
+.upload-func:hover {
+    color: #16a2f2;
+    cursor: pointer;
+}
+
+#indicatorContainer canvas {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.style_iconTweeter{
+    color: #16a2f2;
+    size: 50px;
+}
