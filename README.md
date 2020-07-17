@@ -2,7 +2,6 @@
 # CoderSchool FTW - * Name of Your Project Here *
 
 Created with love by: <Your Name Here>
-Add
 One or two sentence summary of your project. 
 
 ## Video Walkthrough
