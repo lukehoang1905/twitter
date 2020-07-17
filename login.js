@@ -2,10 +2,15 @@ let attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
 const test = { username: 'tester', password: 'abc' }
 
+
+let userDataBase = [{ userName: 'tester', userPassword: 'abc', userEmail: 'test@gmail.com', userPic: "#" }]
+
+
+
 function validate() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-    if (username == test.username && password == test.password) {
+    if (username == userDataBase[0].userName && password == userDataBase[0].userPassword) {
         alert("Login successfully");
         window.location = "index.html"; // Redirecting to other page.
         return false;
@@ -20,4 +25,26 @@ function validate() {
             return false;
         }
     }
+}
+let checked = false
+
+const check = () => {
+    checked = !checked
+}
+
+
+let user = []
+
+const signUp = () => {
+    if (!checked) {
+        alert('bip bip bo')
+        return
+    }
+
+    let userName = document.getElementById('signUser').value
+    let userEmail = document.getElementById('signEmail').value
+    let userPassword = document.getElementById('signPassword').value
+    let
+
+    return
 }
