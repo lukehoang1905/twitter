@@ -15,24 +15,19 @@ position: absolute;
     height: 100%;
     width: 100%;
     } */
-    
 
-h2{
+h2 {
     text-align: center;
     color: blue;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
     font-size: 35px;
 }
-body{
-    background-color:rgb(236, 243, 245);
+
+body {
+    background-color: rgb(236, 243, 245);
     background: linear-gradient(#fcfeff -60%, #94c9fa 140%);
-    background: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(-60%, #8dcfee),
-      color-stop(140%, #0881e4))
-};
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(-60%, #8dcfee), color-stop(140%, #0881e4))
+}
 
-
+;
