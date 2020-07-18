@@ -35,7 +35,7 @@ body {
 #outerMenuContainer:hover {
     color: #1DA1F2 !important;
     background: #CFE7F6;
-    border-radius: 25px;
+    border-radius: 30px;
     text-decoration: none;
     opacity: 0.7;
     /* padding: 5px 0px 5px 3px;
@@ -44,6 +44,8 @@ body {
 
 #outerMenuContainer:hover a {
     color: #1DA1F2 !important;
+    /* color: #1DA1F2 !important; */
+
 }
 
 #outerMenuContainer a {
@@ -83,15 +85,25 @@ body {
 
 #trendings {
     min-width: 380px;
+
 }
 
 #trendings .list-group-item {
-    background-color: #f5f8fa;
+    /* background-color: #be79f7ee; */
+    background-color:rgb(217, 231, 233);
+    background: linear-gradient(#e4f3f7 -60%, #fdfaf1 140%);
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(-60%, #cee4ee),
+      color-stop(140%, #e9f3f3));
 }
 
 #trendings .content {
     cursor: pointer;
 }
+
 
 #trendings .trends-header {
     font-weight: 800;
@@ -371,3 +383,6 @@ h6 {
     color: #16a2f2;
     size: 50px;
 }
+/* .style_home{
+    color:red;
+} */
