@@ -24,8 +24,3 @@
 // document.getElementById("remainArea").innerHTML = remain
 
 
-
-function followClicked(){
-    document.getElementById("following").style.color = "Following";
-}
-
