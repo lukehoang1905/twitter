@@ -445,10 +445,17 @@ h6 {
 .dn-retwitt-card-inside {
   margin: 10px 0px;
 }
+
 .style_iconTweeter{
     color: #16a2f2;
-    size: 50px;
 }
 /* .style_home{
     color:red;
 } */
+.dn-btn-twitt{
+  background-color:  #16a2f2;
+  border: none;
+  height: 30px;
+  width: 50px;
+  margin: 5px;
+}

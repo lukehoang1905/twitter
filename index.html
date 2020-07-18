@@ -3,28 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">z
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitter</title>
     <link rel="shortcut icon" type="image/png"
         href="https://upload.wikimedia.org/wikipedia/vi/thumb/9/9f/Twitter_bird_logo_2012.svg/1200px-Twitter_bird_logo_2012.svg.png" />
-    <link rel="stylesheet" href="css/jquery.hashtags.css">
+    <!-- <link rel="stylesheet" href="css/jquery.hashtags.css"> -->
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrpity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -36,8 +28,8 @@
                 </div>
                 <div class="row my-3">
                     <div id="outerMenuContainer" style="color: #16a2f2;">
-                        <div class="col-2 mr-4 py-2 px-4" style="font-size: 20px;"><i
-                                class="fas fa-house-user fa-lg"></i></div>
+                        <div class="col-2 mr-4 py-2 px-4" style="font-size: 20px;"><a
+                                class="fas fa-house-user fa-lg"></a></div>
                         <div class="col-10 py-2"
                             style="margin-right: 0px;padding-right: 0px;font-weight: 700;font-size: larger;"> <a
                                 href="#Home" style="cursor: pointer;" style="color: #16a2f2;">Home</a></div>
@@ -128,7 +120,8 @@
                         </div>
                         <div class="col-11">
 
-                            <div class="tweetArea" contenteditable="true" placeholder="What's happening" id="dn-textarea"></div>
+                            <div class="tweetArea" contenteditable="true" placeholder="What's happening"
+                                id="dn-textarea"></div>
 
                             <div id="image-container">
                                 <div id="first-row">
@@ -161,7 +154,8 @@
                                     <i class="fal fa-ad fa-lg"></i>
                                     <i class="fal fa-tasks-alt fa-lg"></i>
                                     <i class="fal fa-smile fa-lg"></i>
-                                    <p id='dn-count-text' style='margin:0px'>140</p><!--Dungngno-->
+                                    <p id='dn-count-text' style='margin:0px'>140</p>
+                                    <!--Dungngno-->
                                 </div>
                                 <div class="mt-3"
                                     style="display: flex;flex-direction: row;justify-content: space-between;width: 170px;">
@@ -169,7 +163,9 @@
                                     <!-- <div>
                                         <span id="remain"></span>
                                     </div> -->
-                                    <button class="tweetbtn inputArea-tweetbtn" id='dn-twitt-btn' href="#">Tweet</button><!--Dungngno-->
+                                    <button class="tweetbtn inputArea-tweetbtn" id='dn-twitt-btn'
+                                        href="#">Tweet</button>
+                                    <!--Dungngno-->
                                 </div>
                             </div>
 
@@ -177,7 +173,8 @@
                             <!--  -->
                         </div>
                     </div>
-                    <div id='card-0' class='dn-twitt-area'><!--Dungngno-->
+                    <div id='card-0' class='dn-twitt-area'>
+                        <!--Dungngno-->
                     </div>
                 </div>
             </div>
@@ -189,7 +186,7 @@
                             aria-label="Search" id="search"></div>
                 </nav>
                 <div id="trendings" class="py-3">
-                    <ul class="list-group mb-3">
+                    <ul class="list-group mb-3" id='dn-test'>
                         <li class="list-group-item d-flex justify-content-between lh-condensed content" id="trending1">
                             <div>
                                 <small class="text-muted">Hashtag trending</small>
@@ -223,7 +220,7 @@
                             <span class="text-muted"><i class="fas fa-chevron-down"></i></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between lh-condensed content"
-                            style="border-radius: 0px 0px 15px 15px">
+                            style="border-radius: 0px 0px 15px 15px" id='last-li'>
                             <div>
                                 <h6 class="my-0"><a href="#"
                                         style="COLOR: rgba(29,161,242,1.00); text-decoration: none;">Show more</a></h6>
@@ -367,19 +364,12 @@
 
     <script src="main.js"></script>
     <script src="login.js"></script>
-    <script src="moment.js"></script>
-    <script src="settings.js"></script>
-    <script src="render.js"></script>
+    <script src='jQuery.js'></script>
     <script src="https://cdn.plyr.io/3.6.2/plyr.js"></script>
     <script src="https://momentjs.com/downloads/moment.js"></script>
-    <script src="main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+
 </html>
