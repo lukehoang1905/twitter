@@ -3,26 +3,27 @@ let attempt = 3; // Variable to count number of attempts.
 const test = { username: 'tester', password: 'abc' }
 
 
-let userDataBase = [{ userName: 'tester', userPassword: 'abc', userEmail: 'test@gmail.com', userPic: "#" }]
-
-
+let userDataBase = [{ userName: 'tester', userPassword: 'abc', userEmail: 'test@gmail.com', userPic: "#", userLink: "##" }]
 
 function validate() {
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    if (username == userDataBase[0].userName && password == userDataBase[0].userPassword) {
-        alert("Login successfully");
-        window.location = "index.html"; // Redirecting to other page.
-        return false;
-    } else {
-        attempt--; // Decrementing by one.
-        alert("You have left " + attempt + " attempt;");
-        // Disabling fields after 3 attempts.
-        if (attempt == 0) {
-            document.getElementById("username").disabled = true;
-            document.getElementById("password").disabled = true;
-            document.getElementById("submit").disabled = true;
-            return false;
+    let usernameInput = document.getElementById("username").value;
+    let passwordInput = document.getElementById("password").value;
+
+    for (i = 0; i < userDataBase.length; i++) {
+        if (usernameInput == userDataBase[i].userName && passwordInput == userDataBase[i].userPassword) {
+            alert("Login successfully");
+            window.location = "index.html"; // Redirecting to other page.
+
+        } else {
+            attempt--; // Decrementing by one.
+            alert("You have left " + attempt + " attempt;");
+            // Disabling fields after 3 attempts.
+            if (attempt == 0) {
+                document.getElementById("username").disabled = true;
+                document.getElementById("password").disabled = true;
+                document.getElementById("submit").disabled = true;
+                return false;
+            }
         }
     }
 }
@@ -35,21 +36,40 @@ const check = () => {
 
 let user = []
 
+
+
+
+
+
+
+
+
 const signUp = () => {
     if (!checked) {
-        alert('bip bip bo')
+        alert('bip bip bo are u a robot ')
         return
     }
 
-    let userName = document.getElementById('signUser').value
-    let userEmail = document.getElementById('signEmail').value
-    let userPassword = document.getElementById('signPassword').value
-    let
+    aUserName = document.getElementById('signUser').value
 
-    return
-}
+    aUserEmail = document.getElementById('signEmail').value
 
+    // if(userDataBase.map((data, index) => data.userName).includes(aUserName)===true ||
+    // userDataBase.map((data, index) => data.userPassword).includes(aUserEmail)===false)
 
-function followClicked() {
-    document.getElementById("following").innerHTML = "Following";
+    aUserPassword = document.getElementById('signPassword').value
+    aUserPic = 'default'
+
+    let newUser = {
+        'userName': aUserName,
+        'userPassword': aUserPassword,
+        'userEmail': aUserEmail,
+        'userPic': "#",
+        'userLink': "##"
+    }
+
+    userDataBase.push(newUser)
+
+    console.log(userDataBase)
+
 }
