@@ -12,7 +12,7 @@ function validate() {
     for (i = 0; i < userDataBase.length; i++) {
         if (usernameInput == userDataBase[i].userName && passwordInput == userDataBase[i].userPassword) {
             alert("Login successfully");
-            window.location = "index.html"; // Redirecting to other page.
+            window.location = "home.html"; // Redirecting to other page.
 
         } else {
             attempt--; // Decrementing by one.
