@@ -8,6 +8,7 @@ let allTwitts = {}
 //Main class as a template for any twitt object
 class Twitter {
   constructor(content, type, parent, name) {
+    this.hashTags = []
     this.canTwitt = true;
     this.parent = parent
     this.type = type
@@ -21,7 +22,6 @@ class Twitter {
     this.isClicked = false
     this.isRefer = ''
     this.hashTag = `@${this.name}`
-    this.hashTags = []
 
     //Set links for related nodes
     this.setLinks()
@@ -176,7 +176,6 @@ function twitt() {
   //Update the UI and reset UI
   area.innerHTML = newTwitt.displayHTML(null) + area.innerHTML
   resetTwitt()
-  newTwitt.setJQuery()
 }
 
 //Function to reset the tweet board
