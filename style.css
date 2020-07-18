@@ -45,7 +45,6 @@ body {
 #outerMenuContainer:hover a {
     color: #1DA1F2 !important;
     /* color: #1DA1F2 !important; */
-
 }
 
 #outerMenuContainer a {
@@ -85,25 +84,18 @@ body {
 
 #trendings {
     min-width: 380px;
-
 }
 
 #trendings .list-group-item {
     /* background-color: #be79f7ee; */
-    background-color:rgb(217, 231, 233);
+    background-color: rgb(217, 231, 233);
     background: linear-gradient(#e4f3f7 -60%, #fdfaf1 140%);
-    background: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(-60%, #cee4ee),
-      color-stop(140%, #e9f3f3));
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(-60%, #cee4ee), color-stop(140%, #e9f3f3));
 }
 
 #trendings .content {
     cursor: pointer;
 }
-
 
 #trendings .trends-header {
     font-weight: 800;
@@ -111,7 +103,7 @@ body {
 }
 
 #trendings .content:hover {
-    filter: brightness(97%)
+    filter: brightness(97%);
 }
 
 #trendings ul li .hashtag {
@@ -125,20 +117,20 @@ body {
 }
 
 .fa-badge-check {
-    color: rgba(29, 161, 242, 1.00);
+    color: rgba(29, 161, 242, 1);
 }
 
 .followBtn {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 25px;
-    color: #1DA1F2;
+    color: #1da1f2;
     font-family: Arial;
     font-size: 17px;
     font-weight: 200;
     padding: 3px;
-    background-color: #FFFFFF;
-    border: solid #1DA1F2 1px;
+    background-color: #ffffff;
+    border: solid #1da1f2 1px;
     text-decoration: none;
     /* display: inline-block; */
     cursor: pointer;
@@ -146,8 +138,8 @@ body {
 }
 
 .followBtn:hover {
-    color: #1DA1F2;
-    background: #CFE7F6;
+    color: #1da1f2;
+    background: #cfe7f6;
     border-radius: 25px;
     text-decoration: none;
     opacity: 0.7;
@@ -166,7 +158,7 @@ body {
 }
 
 #whoToFollow .content:hover {
-    filter: brightness(97%)
+    filter: brightness(97%);
 }
 
 #whoToFollow .row .col-6 {
@@ -206,29 +198,28 @@ h6 {
     flex-direction: column;
 }
 
-
-#tweetArea[placeholder]:empty::before,
-#tweetArea-modal[placeholder]:empty::before {
+.tweetArea[placeholder]:empty::before,
+.tweetArea-modal[placeholder]:empty::before {
     content: attr(placeholder);
     color: gray;
     opacity: 0.7;
 }
 
-#tweetArea[placeholder]:empty:focus::before,
-#tweetArea-modal[placeholder]:empty:focus::before {
+.tweetArea[placeholder]:empty:focus::before,
+.tweetArea-modal[placeholder]:empty:focus::before {
     content: "";
     content: attr(placeholder);
     color: gray;
     opacity: 0.7;
 }
 
-#tweetArea[contenteditable]:focus,
-#tweetArea-modal[contenteditable]:focus {
+.tweetArea[contenteditable]:focus,
+.tweetArea-modal[contenteditable]:focus {
     outline: 0px solid transparent;
 }
 
-#tweetArea,
-#tweetArea-modal {
+.tweetArea,
+.tweetArea-modal {
     min-height: 50px;
 }
 
@@ -311,7 +302,6 @@ h6 {
     }
 }
 
-
 @media screen and (min-width: 1800px) {
     #my-img {
         width: 290px;
@@ -379,10 +369,85 @@ h6 {
     height: 50px !important;
 }
 
-.style_iconTweeter{
+.style_iconTweeter {
     color: #16a2f2;
     size: 50px;
 }
+
+.dn-twitt-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    height: 200px;
+    border: 1px solid red;
+}
+
+.dn-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dn-twitt {
+    width: 200px;
+}
+
+#dn-count-text {
+    display: inline-block;
+}
+
+.dn-twitt {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dn-twitt-area {
+    width: 600px;
+}
+
+.dn-twitt-btn {
+    width: 100%;
+}
+
+.dn-img {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+
+.dn-content-name {
+    margin: 0px;
+    padding: 0px;
+}
+
+.dn-comment-card {
+    border: 1px solid blue;
+    width: 90%;
+}
+
+.dn-twitt-card {
+    border: 1px solid red;
+    width: 90%;
+}
+
+.dn-retwitt-card {
+    border: 1px solid green;
+    width: 90%;
+}
+
+.dn-retwitt-card-inside {
+    margin: 10px 0px;
+}
+
+.style_iconTweeter {
+    color: #16a2f2;
+    size: 50px;
+}
+
+
 /* .style_home{
     color:red;
 } */
