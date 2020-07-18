@@ -31,17 +31,19 @@ body {
 }
 
 #outerMenuContainer:hover {
-  color: #1da1f2 !important;
-  background: #cfe7f6;
-  border-radius: 25px;
-  text-decoration: none;
-  opacity: 0.7;
-  /* padding: 5px 0px 5px 3px;
+    color: #1DA1F2 !important;
+    background: #CFE7F6;
+    border-radius: 30px;
+    text-decoration: none;
+    opacity: 0.7;
+    /* padding: 5px 0px 5px 3px;
     width: max-content; */
 }
 
 #outerMenuContainer:hover a {
-  color: #1da1f2 !important;
+    color: #1DA1F2 !important;
+    /* color: #1DA1F2 !important; */
+
 }
 
 #outerMenuContainer a {
@@ -79,16 +81,26 @@ body {
 }
 
 #trendings {
-  min-width: 380px;
+    min-width: 380px;
+
 }
 
 #trendings .list-group-item {
-  background-color: #f5f8fa;
+    /* background-color: #be79f7ee; */
+    background-color:rgb(217, 231, 233);
+    background: linear-gradient(#e4f3f7 -60%, #fdfaf1 140%);
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(-60%, #cee4ee),
+      color-stop(140%, #e9f3f3));
 }
 
 #trendings .content {
   cursor: pointer;
 }
+
 
 #trendings .trends-header {
   font-weight: 800;
@@ -433,3 +445,10 @@ h6 {
 .dn-retwitt-card-inside {
   margin: 10px 0px;
 }
+.style_iconTweeter{
+    color: #16a2f2;
+    size: 50px;
+}
+/* .style_home{
+    color:red;
+} */

@@ -158,7 +158,7 @@ function twitt() {
 
     //Check if user can twitt. If not, alert the user, reset Tweet board, and return immediately
     let wordNum = document.getElementById('dn-textarea').innerText.split('').length
-    if (wordNum > allowText){
+    if (wordNum > allowText) {
         alert("Can't tweet. Maximum number of characters in a tweet is 140.")
         resetTwitt()
         return
@@ -176,7 +176,7 @@ function twitt() {
 }
 
 //Function to reset the tweet board
-function resetTwitt(){
+function resetTwitt() {
     document.getElementById('dn-count-text').innerHTML = 140
     document.getElementById('dn-textarea').innerHTML = ''
 }

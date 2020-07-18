@@ -48,3 +48,8 @@ const signUp = () => {
 
     return
 }
+
+
+function followClicked(){
+    document.getElementById("following").innerHTML = "Following";
+}
