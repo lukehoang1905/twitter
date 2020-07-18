@@ -50,6 +50,6 @@ const signUp = () => {
 }
 
 
-function followClicked(){
+function followClicked() {
     document.getElementById("following").innerHTML = "Following";
 }

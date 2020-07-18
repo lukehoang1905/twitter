@@ -8,76 +8,76 @@ document.getElementById('dn-twitt-btn').addEventListener('click', twitt)
 //Main class as a template for any twitt object
 class Twitter {
     constructor(content, type, parent, name) {
-        this.canTwitt = true;
-        this.parent = parent
-        this.type = type
-        this.like = 0
-        this.id = Date.now()
-        this.retwitts = []
-        this.comments = []
-        this.htmls = []
-        this.name = name
-        this.content = this.searchHashTag(this.id, content)
-        this.isClicked = false
-        this.isRefer = ''
-        this.hashTag = `@${this.name}`
-        this.hashTags = []
+            this.canTwitt = true;
+            this.parent = parent
+            this.type = type
+            this.like = 0
+            this.id = Date.now()
+            this.retwitts = []
+            this.comments = []
+            this.htmls = []
+            this.name = name
+            this.content = this.searchHashTag(this.id, content)
+            this.isClicked = false
+            this.isRefer = ''
+            this.hashTag = `@${this.name}`
+            this.hashTags = []
 
-        //Set links for related nodes
-        this.setLinks()
-    }
-    //Update attributes of parent and child twitts when a new twitt is created
+            //Set links for related nodes
+            this.setLinks()
+        }
+        //Update attributes of parent and child twitts when a new twitt is created
     setLinks() {
-        allTwitts[this.id] = this
-        if (this.type === 'comment') {
-            //Add new comment to the end of array of parent twitt
-            this.parent.comments.push(this)
+            allTwitts[this.id] = this
+            if (this.type === 'comment') {
+                //Add new comment to the end of array of parent twitt
+                this.parent.comments.push(this)
 
-            //Update the UI
-            document.getElementById(`cmt-${this.parent.id}`).innerText = this.parent.comments.length
-        } else if (this.type === 'retwitt') {
-            //Add new retwitt to the end of array of parent twitt
-            this.parent.retwitts.push(this)
+                //Update the UI
+                document.getElementById(`cmt-${this.parent.id}`).innerText = this.parent.comments.length
+            } else if (this.type === 'retwitt') {
+                //Add new retwitt to the end of array of parent twitt
+                this.parent.retwitts.push(this)
 
-            //Update the UI
-            document.getElementById(`ret-${this.parent.id}`).innerText = this.parent.retwitts.length
-        } else {
-            if (this.parent === null) {
-                return
+                //Update the UI
+                document.getElementById(`ret-${this.parent.id}`).innerText = this.parent.retwitts.length
+            } else {
+                if (this.parent === null) {
+                    return
+                }
+                //Add new twitt to the beginning og array of parent twitt
+                this.parent.retwitts.unshift(this)
             }
-            //Add new twitt to the beginning og array of parent twitt
-            this.parent.retwitts.unshift(this)
         }
-    }
-    //display general HTML
+        //display general HTML
     displayHTML(anotherContent) {
-        let classTwitt = ''
-        switch (this.type) {
-            case 'comment':
-                classTwitt = 'dn-comment-card'
-                break
-            case 'twitt':
-                classTwitt = 'dn-twitt-card'
-                break
-            case 'retwitt':
-                classTwitt = 'dn-retwitt-card'
-        }
+            let classTwitt = ''
+            switch (this.type) {
+                case 'comment':
+                    classTwitt = 'dn-comment-card'
+                    break
+                case 'twitt':
+                    classTwitt = 'dn-twitt-card'
+                    break
+                case 'retwitt':
+                    classTwitt = 'dn-retwitt-card'
+            }
 
-        let img = `<img class='col-md-3 dn-img' src='...' alt='...' id='img-${this.id}'>`
-        let name = `<span id='name-${this.id}' class='dn-content-name'>${this.name}</span>`
-        let hashTag = `<a id='name-${this.id}' href='#' onclick='searchHashTag(${this.hashTag})' class='dn-content-hashtag'>${this.hashTag}</a>`
-        let conT = `<p id='content-${this.id}'>${this.content}</p>`
-        if (anotherContent !== null) {
-            conT = `<p id='p-${this.id}'>${this.content}</p><div id='content-${this.id}'>${anotherContent}</div>`
-        }
+            let img = `<img class='col-md-3 dn-img' src='...' alt='...' id='img-${this.id}'>`
+            let name = `<span id='name-${this.id}' class='dn-content-name'>${this.name}</span>`
+            let hashTag = `<a id='name-${this.id}' href='#' onclick='searchHashTag(${this.hashTag})' class='dn-content-hashtag'>${this.hashTag}</a>`
+            let conT = `<p id='content-${this.id}'>${this.content}</p>`
+            if (anotherContent !== null) {
+                conT = `<p id='p-${this.id}'>${this.content}</p><div id='content-${this.id}'>${anotherContent}</div>`
+            }
 
 
-        let btnLike = `<button class ="far fa-heart" id='like-${this.id}' onclick='likeTwitt(${this.id})'> <span id='lk-${this.id}'>0</span></button>`
-        let btnComment = `<button class="far fa-comments" id='comment-${this.id}' onclick='commentTwitt(${this.id})'><span id='cmt-${this.id}'>0</span></button>`
-        let btnDelete = `<button class="far fa-trash-alt" id='delete-${this.id}' onclick='deleteTwitt(${this.id})'><span id='dlt-${this.id}'>0</span></button>`
-        let reTwitt = `<button class="far fa-copy " id='retwitt-${this.id}' onclick='reTwitt(${this.id})'><span id='ret-${this.id}'>0</span></button>`
+            let btnLike = `<button class ="far fa-heart" id='like-${this.id}' onclick='likeTwitt(${this.id})'> <span id='lk-${this.id}'>0</span></button>`
+            let btnComment = `<button class="far fa-comments" id='comment-${this.id}' onclick='commentTwitt(${this.id})'><span id='cmt-${this.id}'>0</span></button>`
+            let btnDelete = `<button class="far fa-trash-alt" id='delete-${this.id}' onclick='deleteTwitt(${this.id})'><span id='dlt-${this.id}'>0</span></button>`
+            let reTwitt = `<button class="far fa-copy " id='retwitt-${this.id}' onclick='reTwitt(${this.id})'><span id='ret-${this.id}'>0</span></button>`
 
-        let box = `
+            let box = `
     <div class='card ${classTwitt}' id='card-${this.id}'>
       <div class='row no-gutters twitt-box' id='box-${this.id}'>
         ${img}
@@ -90,17 +90,17 @@ class Twitter {
       </div>
     </div>
     `
-        return box
-    }
-    //Display the cloned twitt of parent twitt inside of a retwitt
+            return box
+        }
+        //Display the cloned twitt of parent twitt inside of a retwitt
     displayRetwittHTML() {
-        let img = `<img class='col-md-3 dn-img' src='...' alt='...' id='img-${this.id}'>`
-        let name = `<span id='name-${this.id}' class='dn-content-name'>${this.name}</span>`
-        let hashTag = `<a id='name-${this.id}' href='#' onclick='searchHashTag(${this.hashTag})' class='dn-content-hashtag'>${this.hashTag}</a>`
-        let conT = `<p id='content-${this.id}' class='content-${this.id}'>${this.content}</p>`
+            let img = `<img class='col-md-3 dn-img' src='...' alt='...' id='img-${this.id}'>`
+            let name = `<span id='name-${this.id}' class='dn-content-name'>${this.name}</span>`
+            let hashTag = `<a id='name-${this.id}' href='#' onclick='searchHashTag(${this.hashTag})' class='dn-content-hashtag'>${this.hashTag}</a>`
+            let conT = `<p id='content-${this.id}' class='content-${this.id}'>${this.content}</p>`
 
-        //This card and box have different id for any reason
-        let box = `
+            //This card and box have different id for any reason
+            let box = `
     <div class='card dn-retwitt-card-inside' id='card+${this.id}'>
       <div class='row no-gutters twitt-box' id='box+${this.id}'>
         ${img}
@@ -112,13 +112,13 @@ class Twitter {
       </div>
     </div>
     `
-        return box
-    }
-    //Function to set reference if a twitt is retwitted
+            return box
+        }
+        //Function to set reference if a twitt is retwitted
     setRefer(hashTag) {
-        this.isRefer = `Being refered to ${hashTag}`
-    }
-    //Function to search hashtag and update Hashtag 
+            this.isRefer = `Being refered to ${hashTag}`
+        }
+        //Function to search hashtag and update Hashtag 
     searchHashTag(id, content) {
         let words = content.split(' ')
         let output = words.reduce((total, item) => {
@@ -144,8 +144,7 @@ function countText() {
 
     if (allowText < numCount) {
         countText.style.color = 'red'
-    }
-    else {
+    } else {
         countText.style.color = 'black'
     }
     document.getElementById('dn-count-text').innerHTML = allowText - numCount
@@ -187,10 +186,10 @@ function likeTwitt(id) {
     let twitt = allTwitts[id]
     if (!twitt.isClicked) {
         twitt.like++
-        twitt.isClicked = true
+            twitt.isClicked = true
     } else {
         twitt.like--
-        twitt.isClicked = false
+            twitt.isClicked = false
     }
     btnLike.innerText = twitt.like
 }
