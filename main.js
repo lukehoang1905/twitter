@@ -22,13 +22,14 @@ class Twitter {
     this.isClicked = false
     this.isRefer = ''
     this.hashTag = `@${this.name}`
+    this.startTime = Date.now()
+    this.elapseTime = 0
 
     //Set links for related nodes
     this.setLinks()
   }
   //Update attributes of parent and child twitts when a new twitt is created
   setLinks() {
-    allTwitts[this.id] = this
     if (this.type === 'comment') {
       //Add new comment to the end of array of parent twitt
       this.parent.comments.push(this)
@@ -45,9 +46,11 @@ class Twitter {
       if (this.parent === null) {
         return
       }
-      //Add new twitt to the beginning og array of parent twitt
+      //Add new twitt to the beginning of array of parent twitt
       this.parent.retwitts.unshift(this)
     }
+    //Add to central database of all twitt objects - skipped the first obj whose parent is null
+    allTwitts[this.id] = this
   }
   //display general HTML
   displayHTML(anotherContent) {
@@ -63,27 +66,27 @@ class Twitter {
         classTwitt = 'dn-retwitt-card'
     }
 
-    let img = `<img class='col-md-3 dn-img' src='...' alt='...' id='img-${this.id}'>`
-    let name = `<span id='name-${this.id}' class='dn-content-name'>${this.name}</span>`
-    let hashTag = `<a id='name-${this.id}' href='#' onclick='searchHashTag(${this.hashTag})' class='dn-content-hashtag'>${this.hashTag}</a>`
-    let conT = `<p id='content-${this.id}'>${this.content}</p>`
+    let img = `<img class='dn-img' src='/Img/user.png' alt='...' id='img-${this.id}'>`
+    let name = `<span id='name-${this.id}' class='dn-name'>${this.name}</span>`
+    let hashTag = `<a id='name-${this.id}' href='#' class='dn-hashtag'>${this.hashTag}</a>`
+    let conT = `<p id='content-${this.id}' class='dn-content-in'>${this.content}</p>`
+    let time = `<span id='time-${this.id}' class='dn-time'>${this.elapseTime}</span>`
+
     if (anotherContent !== null) {
-      conT = `<p id='p-${this.id}'>${this.content}</p><div id='content-${this.id}'>${anotherContent}</div>`
+      conT = `<p id='p-${this.id}' class='dn-content-in2' >${this.content}</p><div class='dn-wrapper' id='content-${this.id}'>${anotherContent}</div>`
     }
 
-
-    let btnLike = `<button class ="far fa-heart btn-outline-light dn-btn-twitt" id='like-${this.id}' onclick='likeTwitt(${this.id})'> <span id='lk-${this.id}'>0</span></button>`
-    let btnComment = `<button class="far fa-comments btn-outline-light dn-btn-twitt" id='comment-${this.id}' onclick='commentTwitt(${this.id})'><span id='cmt-${this.id}'>0</span></button>`
-    let btnDelete = `<button class="far fa-trash-alt btn-outline-light dn-btn-twitt" id='delete-${this.id}' onclick='deleteTwitt(${this.id})'><span id='dlt-${this.id}'>0</span></button>`
-    let reTwitt = `<button class="far fa-copy btn-outline-light dn-btn-twitt" id='retwitt-${this.id}' onclick='reTwitt(${this.id})'><span id='ret-${this.id}'>0</span></button>`
+    let btnLike = `<button class ="far fa-heart btn-link btn-outline-light dn-btn" id='like-${this.id}' onclick='likeTwitt(${this.id})'> <span id='lk-${this.id}' class='dn-num-tt'>0</span></button>`
+    let btnComment = `<button class="far fa-comments btn-link btn-outline-light dn-btn" id='comment-${this.id}' onclick='commentTwitt(${this.id})'><span id='cmt-${this.id}' class='dn-num-tt'>0</span></button>`
+    let btnDelete = `<button class="far fa-trash-alt btn-link btn-outline-light dn-btn" id='delete-${this.id}' onclick='deleteTwitt(${this.id})'><span id='dlt-${this.id}' class='dn-num-tt'>0</span></button>`
+    let reTwitt = `<button class="far fa-copy btn-link btn-outline-light dn-btn" id='retwitt-${this.id}' onclick='reTwitt(${this.id})'><span id='ret-${this.id}' class='dn-num-tt'>0</span></button>`
 
     let box = `
     <div class='card ${classTwitt}' id='card-${this.id}'>
       <div class='row no-gutters twitt-box' id='box-${this.id}'>
-        ${img}
-        <div class='col-md-9 dn-twitt-content'>
-          ${name} ${hashTag}
-          <p>${this.isRefer}</p>
+        <div class='col-md-2 dn-img-box'>${img}</div>
+        <div class='col-md-10 dn-twitt-content'>
+          <div class='dn-card-name'>${name} ${hashTag} - ${time}<p class='dn-refer'>${this.isRefer}</p></div>
           ${conT}
           <div class='dn-twitt-btn'>${btnLike}${btnComment}${btnDelete}${reTwitt}</div>
         </div>
@@ -94,19 +97,19 @@ class Twitter {
   }
   //Display the cloned twitt of parent twitt inside of a retwitt
   displayRetwittHTML() {
-    let img = `<img class='col-md-3 dn-img' src='...' alt='...' id='img-${this.id}'>`
-    let name = `<span id='name-${this.id}' class='dn-content-name'>${this.name}</span>`
-    let hashTag = `<a id='name-${this.id}' href='#' onclick='searchHashTag(${this.hashTag})' class='dn-content-hashtag'>${this.hashTag}</a>`
-    let conT = `<p id='content-${this.id}' class='content-${this.id}'>${this.content}</p>`
+    let img = `<img class='dn-img' src='/Img/nobita.png' alt='...' id='img-${this.id}'>`
+    let name = `<span id='name-${this.id}' class='dn-name'>${this.name}</span>`
+    let hashTag = `<a id='name-${this.id}' href='#' class='dn-hashtag'>${this.hashTag}</a>`
+    let conT = `<p id='content-${this.id}' class='content-${this.id} dn-content'>${this.content}</p>`
+    let time = `<span id='time-${this.id}' class='dn-time'>${this.elapseTime}</span>`
 
     //This card and box have different id for any reason
     let box = `
     <div class='card dn-retwitt-card-inside' id='card+${this.id}'>
       <div class='row no-gutters twitt-box' id='box+${this.id}'>
-        ${img}
+        <div class='col-md-3 dn-img-box'>${img}</div>
         <div class='col-md-9 dn-twitt-content'>
-          ${name} ${hashTag}
-          <p>${this.isRefer}</p>
+          <div class='dn-card-name'>${name} ${hashTag} ${time}<p>${this.isRefer}</p></div>
           ${conT}
         </div>
       </div>
@@ -165,6 +168,10 @@ function twitt() {
     alert("Can't tweet. Maximum number of characters in a tweet is 140.")
     resetTwitt()
     return
+  } else if (wordNum === 0) {
+    alert("Please enter something in the textbox before tweeting.")
+    resetTwitt()
+    return
   }
 
   //Get the content user wants to twitt
@@ -176,6 +183,9 @@ function twitt() {
   //Update the UI and reset UI
   area.innerHTML = newTwitt.displayHTML(null) + area.innerHTML
   resetTwitt()
+
+  //Update time
+  updateTime()
 }
 
 //Function to reset the tweet board
@@ -197,6 +207,9 @@ function likeTwitt(id) {
     twitt.isClicked = false
   }
   btnLike.innerText = twitt.like
+
+  //Update time
+  updateTime()
 }
 
 //Function renders when user clicks comment button of twitt with 'id' - CREATE NEW TWITT
@@ -216,6 +229,9 @@ function commentTwitt(id) {
 
   //Add new comment to commented twitt
   card.innerHTML = card.innerHTML + newComment.displayHTML(null)
+
+  //Update time
+  updateTime()
 }
 
 //Function renders when user clicks delete a twitt
@@ -299,6 +315,9 @@ function deleteTwitt(id) {
     //Update the UI
     parentCard.innerHTML = parentBox.outerHTML + innerHTML
   }
+
+  //Update time
+  updateTime()
 }
 
 //Function to create a new retwitt - CREATE NEW TWITT
@@ -319,6 +338,54 @@ function reTwitt(id) {
 
   //Update the UI
   card.innerHTML = newTwitt.displayHTML(thisTwitt.displayRetwittHTML()) + card.innerHTML
+
+  //Update time
+  updateTime()
+}
+
+//Function to update elapsed time of all twitts
+function updateTime() {
+  keys = Object.keys(allTwitts)
+  for (let i = 0; i < keys.length; i++) {
+    //Get the html tag with id of 'time-id'
+    let timeTag = document.getElementById(`time-${keys[i]}`)
+
+    //Get the twitt object
+    let twitt = allTwitts[keys[i]]
+
+    //Calculate the elapsed time, starting from the time this twitt is created
+    twitt.elapseTime = convertTime(Date.now() - twitt.startTime)
+
+    //Update the UI
+    timeTag.innerHTML = twitt.elapseTime
+  }
+}
+
+//Function to covert from miliseconds to seconds or minutes or hours or days
+function convertTime(miliseconds) {
+  //Convert to seconds, minutes, hours, and days
+  let seconds = parseInt(Math.floor(miliseconds / 1000))
+  let minutes = parseInt(Math.floor(seconds / 60))
+  let hours = parseInt(Math.floor(minutes / 60))
+  let days = parseInt(Math.floor(hours / 24))
+
+  //Set timetable object
+  let time = {
+    'seconds': `${seconds} seconds ago`,
+    'minutes': `${minutes} minutes ago`,
+    'hours': `${hours} hours ago`,
+    'days': `${days} days ago`
+  }
+
+  //Get keys
+  let keys = Object.keys(time)
+
+  //Iterate through timetable
+  for (let i = 0; i < keys.length; i++) {
+    let str = time[keys[i + 1]].split(' ')
+    if (parseInt(str[0]) === 0) return time[keys[i]]
+  }
+  return time['days']
 }
 
 //This part illustrate the sliding trending bars
@@ -330,9 +397,9 @@ function sleep(miliseconds) {
 }
 
 //Function to keep the bar sliding - Recursion
-async function cycle() {
+async function cycle(N) {
   //Sleep for 1s until next section
-  await sleep(1000)
+  await sleep(N)
 
   //Remove the first element of a list
   let elt = lst.shift()
@@ -340,17 +407,17 @@ async function cycle() {
   let lastli = $(`#last-li`).first()
 
   //Hide the removed bar and sleep for 1s to avoid time collision -> then remove it from HTML
-  li.hide(1000); await sleep(1000); li.detach()
+  li.hide(N); await sleep(N); li.detach()
 
   //Make the deleted bar disappear
   li.attr('style', 'display:none')
   lastli.before(li)
 
   //Show the bar for 1s and sleep for 1s to avoid time collision
-  li.show(1000); await sleep(1000)
+  li.show(N); await sleep(N)
 
   //Push the deleted to the end of the list
   lst.push(elt)
-  cycle()
+  cycle(N)
 }
-cycle()
+cycle(2000)
