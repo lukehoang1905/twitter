@@ -9,8 +9,6 @@ let user = []
 
 let userDataBase = [{ userName: 'tester', userPassword: 'abc', userEmail: 'test@gmail.com', userPic: "#", userLink: "" }]
 
-
-
 function validate() {
     let usernameInput = document.getElementById("username").value;
     let passwordInput = document.getElementById("password").value;
@@ -38,9 +36,6 @@ let checked = false
 const check = () => {
     checked = !checked
 }
-
-
-
 
 const signUp = () => {
     if (!checked) {

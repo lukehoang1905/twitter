@@ -5,11 +5,14 @@ document.getElementById('dn-twitt-btn').addEventListener('click', twitt)
 const allowTextDN = 140
 let allTwitts = {}
     //issue here!! how to know which account just signed in to call the right local object
+    //tuan
 let localUserData = JSON.parse(window.localStorage.getItem('user'))
     //this only show the latest sign up! not everything
 let pic = localUserData.userPic
+    //tuan
 document.getElementById("outProPic").setAttribute('src', pic)
-    //Main class as a template for any twitt object
+
+//Main class as a template for any twitt object
 class Twitter {
     constructor(content, type, parent, name) {
             this.hashTags = []
@@ -69,7 +72,7 @@ class Twitter {
                 case 'retwitt':
                     classTwitt = 'dn-retwitt-card'
             }
-
+            //tuan
             let img = `<img class='dn-img' src='${pic}' alt='...' id='img-${this.id}'>`
             let name = `<span id='name-${this.id}' class='dn-name'>${this.name}</span>`
             let hashTag = `<a id='name-${this.id}' href='#' class='dn-hashtag'>${this.hashTag}</a>`
@@ -138,7 +141,7 @@ class Twitter {
         }, '')
         return output
     }
-}
+} //tuan
 let mainTwitt = new Twitter('', 'twitt', null, `${localUserData.userName}`)
 mainTwitt.id = 0
 
@@ -180,7 +183,7 @@ function twitt() {
     //Get the content user wants to twitt
     let content = document.getElementById('dn-textarea').innerText
 
-    //Create a new twitt object
+    //Create a new twitt object //tuan
     let newTwitt = new Twitter(content, 'twitt', mainTwitt, `${localUserData.userName}`)
 
     //Update the UI and reset UI
