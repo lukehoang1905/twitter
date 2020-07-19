@@ -388,7 +388,6 @@ h6 {
 .style_iconTweeter {
     color: #16a2f2;
     size: 50px;
-    <<<<<<< HEAD
 }
 
 
@@ -462,7 +461,6 @@ h6 {
 
 .dn-refer {
     margin: 0px;
-    =======
 }
 
 .dn-twitt-box {
@@ -517,7 +515,6 @@ h6 {
 .dn-comment-card {
     border: 1px solid blue;
     width: 90%;
-    >>>>>>>3552af0... bground-11-23
 }
 
 .dn-wrapper {
@@ -528,7 +525,7 @@ h6 {
 /*Card*/
 
 .dn-twitt-card {
-    <<<<<<< HEAD transition: 1s ease;
+    transition: 1s ease;
     padding: 5px;
     border-radius: 20px;
 }
@@ -561,7 +558,7 @@ h6 {
 
 .style_iconTweeter {
     color: #16a2f2;
-    =======border: 1px solid red;
+    border: 1px solid red;
     width: 90%;
 }
 
@@ -600,5 +597,4 @@ h6 {
     .team .cap {
         transform: scale(0.9);
     }
-    >>>>>>>3552af0... bground-11-23
 }

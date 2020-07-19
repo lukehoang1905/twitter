@@ -83,7 +83,8 @@
                     </div>
                 </div>
                 <div class="row my-3">
-                    <div class="col"><button class="tweetbtn" href="#">Tweet</button></div>
+                    <!-- tuan -->
+                    <div class="col"><button data-toggle="modal" data-target="#exampleModalCenter" class="tweetbtn" href="#">Tweet</button></div>
                 </div>
             </div>
 
@@ -138,8 +139,6 @@
                                     <!--Dungngno-->
                                 </div>
                             </div>
-
-
                             <!--  -->
                         </div>
                     </div>
@@ -321,12 +320,81 @@
             </div>
         </div>
     </div>
-    <!-- Nguyenle -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" crossorigin="anonymous"></script>
-    <!-- Nguyenle -->
-    <script src="main.js"></script>
-    <script src="login.js"></script>
+    <!-- Tweet Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">What in your mind?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div id="inputArea" class="px-3">
+                        <div class="row" id="header">
+                            <div class="col-1">
+                                <img src="" id="outProPic" alt="Avatar">
+                            </div>
+                            <div class="col-11">
+
+                                <div class="tweetArea" contenteditable="true" placeholder="What's happening" id="dn-textarea"></div>
+
+                                <div id="image-container">
+                                    <div id="first-row">
+                                        <img id="my-img" style="display: none;" class="firstImg" height="250px" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&w=1000&q=80" />
+
+                                        <img id="my-img" style="display: none;" class="secondImg" height="250px" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&w=1000&q=80" />
+
+                                    </div>
+
+                                    <div id="second-row">
+                                        <img id="my-img" style="display: none;" class="thirdImg" height="250px" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&w=1000&q=80" />
+
+                                        <img id="my-img" style="display: none;" class="fourthImg" height="250px" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&w=1000&q=80" />
+
+                                    </div>
+                                </div>
+                                <div class="utilityBar">
+                                    <div class="icons" style="color:#16a2f2; width: 200px;">
+                                        <div class="img-upload">
+                                            <label for="file-input">
+                                                <i class="fal fa-image-polaroid fa-lg"></i>
+                                            </label>
+                                            <input id="file-input" type="file" accept="image/*" multiple />
+                                        </div>
+
+                                        <i class="fal fa-ad fa-lg"></i>
+                                        <i class="fal fa-tasks-alt fa-lg"></i>
+                                        <i class="fal fa-smile fa-lg"></i>
+                                        <p id='dn-count-text' style='margin:0px'>140</p>
+                                        <!--Dungngno-->
+                                    </div>
+                                    <div class="mt-3" style="display: flex;flex-direction: row;justify-content: space-between;width: 170px;">
+                                        <div id="indicatorContainer"></div>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button class="tweetbtn inputArea-tweetbtn" id='dn-twitt-btn' href="#">Tweet</button>
+                                        <!--Dungngno-->
+                                    </div>
+                                </div>
+
+                                <!--  -->
+                            </div>
+                        </div>
+                        <div id='card-0' class='dn-twitt-area'>
+                            <!--Dungngno-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js'></script>
+    <script src="/main.js"></script>
+    <script src="/login.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
 
 </html>
