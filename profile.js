@@ -16,12 +16,10 @@ function changeImage(input) {
     var reader;
     if (input.files && input.files[0]) {
         reader = new FileReader();
-        console.log(input.files.value)
-        console.log(input.files[0].value)
         reader.onload = function(e) {
             preview.setAttribute('src', e.target.result);
             link = e.target.result
-
+            window.localStorage.setItem('userPic', JSON.stringify(link))
         }
 
         reader.readAsDataURL(input.files[0]);
@@ -35,4 +33,5 @@ const propic = () => {
         yourImg.style.height = '100px';
         yourImg.style.width = '200px';
     }
+
 }
