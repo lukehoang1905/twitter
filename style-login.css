@@ -26,6 +26,6 @@ h2 {
 
 body {
     background-color: rgb(236, 243, 245);
-    background: linear-gradient(#fcfeff -60%, #94c9fa 140%);
-    background: -webkit-gradient( linear, left top, left bottom, color-stop(-60%, #8dcfee), color-stop(140%, #0881e4));
+    background: linear-gradient(#fcfeff -60%, #d7e6f3 140%);
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(-60%, #e2f0f7), color-stop(140%, #0881e4));
 }
