@@ -82,7 +82,7 @@ class Twitter {
             if (anotherContent !== null) {
                 conT = `<p id='p-${this.id}' class='dn-content-in2' >${this.content}</p><div class='dn-wrapper' id='content-${this.id}'>${anotherContent}</div>`
             }
-
+            //tuan anh nghi cho nay la cho minh add  data-toggle="modal" data-target="#exampleModalCenter" vao trong button
             let btnLike = `<button class ="far fa-heart btn-link btn-outline-light dn-btn" id='like-${this.id}' onclick='likeTwitt(${this.id})'> <span id='lk-${this.id}' class='dn-num-tt'>0</span></button>`
             let btnComment = `<button class="far fa-comments btn-link btn-outline-light dn-btn" id='comment-${this.id}' onclick='commentTwitt(${this.id})'><span id='cmt-${this.id}' class='dn-num-tt'>0</span></button>`
             let btnDelete = `<button class="far fa-trash-alt btn-link btn-outline-light dn-btn" id='delete-${this.id}' onclick='deleteTwitt(${this.id})'><span id='dlt-${this.id}' class='dn-num-tt'>0</span></button>`
