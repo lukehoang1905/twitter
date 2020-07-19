@@ -8,6 +8,7 @@ let allTwitts = {}
 //Main class as a template for any twitt object
 class Twitter {
   constructor(content, type, parent, name) {
+    this.links = []
     this.hashTags = []
     this.canTwitt = true;
     this.parent = parent
@@ -18,7 +19,7 @@ class Twitter {
     this.comments = []
     this.htmls = []
     this.name = name
-    this.content = this.searchHashTag(this.id, content)
+    this.content = this.searchHashtags(this.id, content)
     this.isClicked = false
     this.isRefer = ''
     this.hashTag = `@${this.name}`
@@ -27,6 +28,9 @@ class Twitter {
 
     //Set links for related nodes
     this.setLinks()
+
+    //Update content to include iframe as well
+    this.content += this.searchLinks(this.id, content)
   }
   //Update attributes of parent and child twitts when a new twitt is created
   setLinks() {
@@ -76,10 +80,10 @@ class Twitter {
       conT = `<p id='p-${this.id}' class='dn-content-in2' >${this.content}</p><div class='dn-wrapper' id='content-${this.id}'>${anotherContent}</div>`
     }
 
-    let btnLike = `<button class ="far fa-heart btn-link btn-outline-light dn-btn" id='like-${this.id}' onclick='likeTwitt(${this.id})'> <span id='lk-${this.id}' class='dn-num-tt'>0</span></button>`
-    let btnComment = `<button class="far fa-comments btn-link btn-outline-light dn-btn" id='comment-${this.id}' onclick='commentTwitt(${this.id})'><span id='cmt-${this.id}' class='dn-num-tt'>0</span></button>`
-    let btnDelete = `<button class="far fa-trash-alt btn-link btn-outline-light dn-btn" id='delete-${this.id}' onclick='deleteTwitt(${this.id})'><span id='dlt-${this.id}' class='dn-num-tt'>0</span></button>`
-    let reTwitt = `<button class="far fa-copy btn-link btn-outline-light dn-btn" id='retwitt-${this.id}' onclick='reTwitt(${this.id})'><span id='ret-${this.id}' class='dn-num-tt'>0</span></button>`
+    let btnLike = `<button class ="far fa-heart btn-outline-dark dn-btn-lk" id='like-${this.id}' onclick='likeTwitt(${this.id})'> <span id='lk-${this.id}' class='dn-num-tt'>0</span></button>`
+    let btnComment = `<button class="far fa-comments btn-outline-dark dn-btn-cmt" id='comment-${this.id}' onclick='commentTwitt(${this.id})'><span id='cmt-${this.id}' class='dn-num-tt'>0</span></button>`
+    let btnDelete = `<button class="far fa-trash-alt btn-outline-dark dn-btn-dlt" id='delete-${this.id}' onclick='deleteTwitt(${this.id})'><span id='dlt-${this.id}' class='dn-num-tt'>0</span></button>`
+    let reTwitt = `<button class="far fa-copy btn-outline-dark dn-btn-ret" id='retwitt-${this.id}' onclick='reTwitt(${this.id})'><span id='ret-${this.id}' class='dn-num-tt'>0</span></button>`
 
     let box = `
     <div class='card ${classTwitt}' id='card-${this.id}'>
@@ -109,7 +113,7 @@ class Twitter {
       <div class='row no-gutters twitt-box' id='box+${this.id}'>
         <div class='col-md-3 dn-img-box'>${img}</div>
         <div class='col-md-9 dn-twitt-content'>
-          <div class='dn-card-name'>${name} ${hashTag} ${time}<p>${this.isRefer}</p></div>
+          <div class='dn-card-name'>${name} ${hashTag} - ${time}<p>${this.isRefer}</p></div>
           ${conT}
         </div>
       </div>
@@ -122,17 +126,53 @@ class Twitter {
     this.isRefer = `Being refered to ${hashTag}`
   }
   //Function to search hashtag and update Hashtag 
-  searchHashTag(id, content) {
-    let words = content.split(' ')
+  searchHashtags(id, content) {
+    let words = this.splitString(content)
+    // console.log(words)
     let output = words.reduce((total, item) => {
       if (item.charAt(0) === '#') {
         //Update the number of hashtags in a content
         this.hashTags.push(item)
-        return total += `<a id='link-${id}' href='#'>${item} </a>`
+        return total += `<a id='hashtag-${id}' href='#'>${item} </a>`
+      }
+      if (item.search('http') != -1 || item.search('https') != -1) {
+        //Update the link
+        this.links.push(item)
+        return total += `<a id='link-${id}' href='${item}'>${item}</a>`
       }
       return total += item + ' '
     }, '')
     return output
+  }
+  //Function search for links embeded in content
+  searchLinks(id, content) {
+    let words = this.splitString(content)
+    let output = ''
+    for (let i = 0; i < words.length; i++) {
+      if (words[i].search('http') != -1 || words[i].search('https') != -1) {
+        output = `<iframe id='frame-${id}' src='${words[i].replace('watch?v=', 'embed/')}' title='IFrame' class='dn-iframe' frameborder='0'></iframe>`
+      }
+    }
+    return output
+  }
+  //Function to help split the string when built-in split() does not work
+  splitString(content) {
+    //Declare all variables
+    let j = 0; let i = 0
+    let chars = content.split('')
+    let result = []
+
+    //Iterate through each character of content. If that char is space or special character (160), parse there
+    for (i = 0; i < chars.length; i++) {
+      if (content.charCodeAt(i) === 160 || content.charCodeAt(i) === 32) {
+        result.push(chars.slice(j, i).join(''))
+        j = i + 1
+      }
+    }
+
+    // Add the last substring to result
+    result.push(chars.slice(j, i).join(''))
+    return result
   }
 }
 let mainTwitt = new Twitter('', 'twitt', null, 'DungNgo')
@@ -197,6 +237,12 @@ function resetTwitt() {
 
 //Function renders when user clicks like a twitt
 function likeTwitt(id) {
+  //Check if a twitt still exists. If not, return immediately
+  if (!stillExist(id)) {
+    alert("This tweet is not available!")
+    return;
+  }
+
   let btnLike = document.getElementById(`lk-${id}`)
   let twitt = allTwitts[id]
   if (!twitt.isClicked) {
@@ -214,6 +260,12 @@ function likeTwitt(id) {
 
 //Function renders when user clicks comment button of twitt with 'id' - CREATE NEW TWITT
 function commentTwitt(id) {
+  //Check if a twitt still exists. If not, return immediately
+  if (!stillExist(id)) {
+    alert("This tweet is not available!")
+    return;
+  }
+
   //Ask the user for input
   let cmt = prompt('What do you think about this twitt: ')
 
@@ -235,7 +287,13 @@ function commentTwitt(id) {
 }
 
 //Function renders when user clicks delete a twitt
-function deleteTwitt(id) {
+async function deleteTwitt(id) {
+  //Check if a twitt still exists. If not, return immediately
+  if (!stillExist(id)) {
+    alert("This tweet is not available!")
+    return;
+  }
+
   //Get the twitt with 'id'
   let thisTwitt = allTwitts[id]
   let innerHTML = ''
@@ -247,8 +305,10 @@ function deleteTwitt(id) {
   let parentCard = document.getElementById(`card-${parentTwitt.id}`)
   let parentBox = document.getElementById(`box-${parentTwitt.id}`)
 
-  //delete twitt with 'id'
+  //delete twitt with 'id' and hide it away
   delete allTwitts[id]
+  $(`#card-${id}`).first().hide(1500)
+  await sleep(1500)
 
   if (thisTwitt.type === 'twitt') {
     //Get an array of all twitts in parent twitt
@@ -261,8 +321,14 @@ function deleteTwitt(id) {
     //Get all the cloned content of this twitt. Recall that these contents are inside retwitt objects
     let cloneTwitts = document.getElementsByClassName(`content-${thisTwitt.id}`)
     for (let i = 0; i < cloneTwitts.length; i++) {
-
       cloneTwitts[i].innerText = 'This content is not available anymore'
+    }
+
+    //Delete all twitts that are retwitts of thisTwitt (children of thisTwitt)
+    let childrenTwitts = thisTwitt.retwitts
+    for (let i = 0; i < childrenTwitts.length; i++) {
+      let childTwitt = childrenTwitts[i]
+      delete allTwitts[childTwitt.id]
     }
 
     //Get the new cards div - update UI
@@ -322,6 +388,12 @@ function deleteTwitt(id) {
 
 //Function to create a new retwitt - CREATE NEW TWITT
 function reTwitt(id) {
+  //Check if a twitt still exists. If not, return immediately
+  if (!stillExist(id)) {
+    alert("This tweet is not available!")
+    return;
+  }
+
   //Get the user input
   let cmt = prompt('What do you want to retwitt: ')
 
@@ -388,6 +460,15 @@ function convertTime(miliseconds) {
   return time['days']
 }
 
+//Function to check a twitt actually exists or not
+function stillExist(id) {
+  let keys = Object.keys(allTwitts)
+  for (let i = 0; i < keys.length; i++) {
+    if (id == keys[i]) return true
+  }
+  return false
+}
+
 //This part illustrate the sliding trending bars
 let lst = ['trending1', 'trending2', 'trending3', 'trending4']
 
@@ -420,4 +501,4 @@ async function cycle(N) {
   lst.push(elt)
   cycle(N)
 }
-cycle(2000)
+cycle(2500)

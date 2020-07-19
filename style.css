@@ -384,13 +384,37 @@ h6 {
   justify-content: space-between;
 }
 
-.dn-btn {
-  background-color: lightskyblue;
+.dn-btn-dlt, .dn-btn-lk, .dn-btn-ret, .dn-btn-cmt{
+  background-color: #ffffff;
   border-radius: 10px;
   opacity: 0.7;
   border: none;
   height: 30px;
   width: 50px;
+  transition: 0.5s ease;
+  border: none;
+  outline: none;
+}
+
+.dn-btn-cmt:hover{
+  background-color: rgb(9, 184, 238);
+}
+
+.dn-btn-lk:hover{
+  background-color: rgb(238, 99, 99);
+}
+
+.dn-btn-ret:hover{
+  background-color: rgb(110, 216, 110);
+}
+
+.dn-btn-dlt:hover{
+  background-color: rgb(217, 9, 236);
+}
+
+.dn-btn-dlt:focus, .dn-btn-ret:focus, .dn-btn-lk:focus, .dn-btn-cmt:focus{
+  border: none;
+  outline: none !important;
 }
 
 .dn-num-tt {
@@ -430,6 +454,7 @@ h6 {
   display: block;
   margin: 5px;
   padding: 0px;
+  max-height: 500px;
 }
 
 .dn-content {
@@ -448,20 +473,24 @@ h6 {
   width: 100%;
 }
 
+.dn-iframe{
+  padding: 10px 10px;
+  width: 100%;
+  height: 350px;
+}
+
 /*Card*/
 .dn-twitt-card {
-  transition: 1s ease;
+  transition: 0.5s ease;
   padding: 5px;
-  border-radius: 20px;
 }
 
 .dn-retwitt-card {
-  transition: 1s ease;
-  border-radius: 20px;
+  transition: 0.5s ease;
 }
 
 .dn-comment-card {
-  transition: 1s ease;
+  transition: 0.5s ease;
   margin-left: 30px;
   padding: 5px;
   border-radius: 20px;
@@ -469,7 +498,7 @@ h6 {
 
 .dn-retwitt-card-inside {
   margin: 20px 5px;
-  transition: 1s ease;
+  transition: 0.5s ease;
   border-radius: 20px;
 }
 
@@ -478,7 +507,7 @@ h6 {
 .dn-retwitt-card-inside:hover,
 .dn-comment-card:hover {
   background-color: aliceblue;
-  transform: scale(1.01);
+  transform: scale(1.005);
 }
 
 .style_iconTweeter {
