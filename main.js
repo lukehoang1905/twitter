@@ -536,4 +536,4 @@ async function cycle(N) {
   lst.push(elt)
   cycle(N)
 }
-cycle(3000)
+cycle(2000)
