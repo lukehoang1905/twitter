@@ -4,13 +4,13 @@ document.getElementById('dn-twitt-btn').addEventListener('click', twitt)
 
 const allowTextDN = 140
 let allTwitts = {}
-// //issue here!! how to know which account just signed in to call the right local object
-// //tuan
-// let localUserData = JSON.parse(window.localStorage.getItem('user'))
-// //this only show the latest sign up! not everything
-// let pic = localUserData.userPic
-// //tuan
-// document.getElementById("outProPic").setAttribute('src', pic)
+//issue here!! how to know which account just signed in to call the right local object
+//tuan
+let localUserData = JSON.parse(window.localStorage.getItem('user'))
+//this only show the latest sign up! not everything
+let pic = localUserData.userPic
+//tuan
+document.getElementById("outProPic").setAttribute('src', pic)
 
 //Function to make the program sleep for miliseconds
 function sleep(miliseconds) {
@@ -82,7 +82,7 @@ class Twitter {
         classTwitt = 'dn-retwitt-card'
     }
 
-    let img = `<img class='dn-img' src='/Img/user.png' alt='...' id='img-${this.id}'>`
+    let img = `<img class='dn-img' src='${pic}' alt='...' id='img-${this.id}'>`
     let name = `<span id='name-${this.id}' class='dn-name'>${this.name}</span>`
     let hashTag = `<a id='name-${this.id}' href='#' class='dn-hashtag'>${this.hashTag}</a>`
     let conT = `<p id='content-${this.id}' class='dn-content-in'>${this.content}</p>`
@@ -254,8 +254,8 @@ function twitt() {
   let content = document.getElementById('dn-textarea').innerText
 
   //Create a new twitt object //tuan
-  // let newTwitt = new Twitter(content, 'twitt', mainTwitt, `${localUserData.userName}`)
-  let newTwitt = new Twitter(content, 'twitt', mainTwitt, 'Luke Nguyen')
+  let newTwitt = new Twitter(content, 'twitt', mainTwitt, `${localUserData.userName}`)
+  // let newTwitt = new Twitter(content, 'twitt', mainTwitt, 'Luke Nguyen')
 
   //Update the UI and reset UI
   area.innerHTML = newTwitt.displayHTML(null) + area.innerHTML
@@ -311,7 +311,7 @@ function commentTwitt(id) {
   let thisTwitt = allTwitts[id]
 
   //Create a new twitt with 'comment' type
-  let newComment = new Twitter(cmt, 'comment', thisTwitt, 'Luke')
+  let newComment = new Twitter(cmt, 'comment', thisTwitt, `${localUserData.userName}`)
 
   //Indicate what this twitt being refered to a twitt that is commented
   newComment.setRefer(thisTwitt.hashTag)
@@ -439,7 +439,7 @@ function reTwitt(id) {
   let thisTwitt = allTwitts[id]
 
   //Create a new twitt of type retwitt and also add this new twitt to the beginning of mainTwitt
-  let newTwitt = new Twitter(cmt, 'retwitt', thisTwitt, 'Nguyen')
+  let newTwitt = new Twitter(cmt, 'retwitt', thisTwitt, `${localUserData.userName}`)
   mainTwitt.retwitts.unshift(newTwitt)
 
   //Indicate what this twitt being refered to a twitt that is commented
