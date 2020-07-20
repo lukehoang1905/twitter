@@ -4,6 +4,18 @@ document.getElementById('dn-twitt-btn').addEventListener('click', twitt)
 
 const allowTextDN = 140
 let allTwitts = {}
+// //issue here!! how to know which account just signed in to call the right local object
+// //tuan
+// let localUserData = JSON.parse(window.localStorage.getItem('user'))
+// //this only show the latest sign up! not everything
+// let pic = localUserData.userPic
+// //tuan
+// document.getElementById("outProPic").setAttribute('src', pic)
+
+//Function to make the program sleep for miliseconds
+function sleep(miliseconds) {
+  return new Promise(resolve => setTimeout(resolve, miliseconds))
+}
 
 //Main class as a template for any twitt object
 class Twitter {
@@ -178,6 +190,31 @@ class Twitter {
 let mainTwitt = new Twitter('', 'twitt', null, 'DungNgo')
 mainTwitt.id = 0
 
+//Function create 4 defaults tweets in Twitter
+async function creatDefaults() {
+  //Create 4 default twitts - Trick: Since I initiate all 4 at once. it may have the same id -> Use sleep()
+  let quocTwitt = new Twitter("Hello everyone. Nice to meet you all! https://www.coderschool.vn/en/ #MondayisFun #Twitter #CoderSchool #Team2", 'twitt', mainTwitt, 'Quoc Hoang')
+  await sleep(50)
+
+  let nguyenTwitt = new Twitter("Watch Nobita with me: https://www.youtube.com/watch?v=2wQ2isdUtwk  #Nobita #Xuka #Chaien #Doraemon #Summer2020", 'twitt', mainTwitt, 'Nguyen Le')
+  await sleep(50)
+
+  let tuanTiwtt = new Twitter("The coronavirus surges in the U.S. Checkout this link for more information. https://coronavirus.jhu.edu/  #JHU #Coronavius #Covid-19 #WearMaskPublicly", 'twitt', mainTwitt, 'Tuan Nguyen')
+  await sleep(50)
+
+  let dungTwitt = new Twitter('Watch this video: https://www.youtube.com/watch?v=6t-MjBazs3o  #CoChacLaYeuDay #SonTungMTP #SkyFan #SepOi #Summer2020', 'twitt', mainTwitt, 'Dung Ngo')
+  await sleep(50)
+
+  //Get the twitt area and add all twitts to that area
+  let area = document.getElementById(`card-${mainTwitt.id}`)
+  area.innerHTML = dungTwitt.displayHTML(null) + tuanTiwtt.displayHTML(null) + nguyenTwitt.displayHTML(null) + quocTwitt.displayHTML(null) + area.innerHTML
+
+  //Reset and update time
+  resetTwitt()
+  updateTime()
+}
+creatDefaults()
+
 //Function to count the number of text left
 function countText() {
   let textarea = document.getElementById('dn-textarea')
@@ -187,8 +224,7 @@ function countText() {
   //Set the color of text count
   if (allowTextDN < numCount) {
     countText.style.color = 'red'
-  }
-  else {
+  } else {
     countText.style.color = 'black'
   }
 
@@ -217,8 +253,9 @@ function twitt() {
   //Get the content user wants to twitt
   let content = document.getElementById('dn-textarea').innerText
 
-  //Create a new twitt object
-  let newTwitt = new Twitter(content, 'twitt', mainTwitt, 'DungNgo')
+  //Create a new twitt object //tuan
+  // let newTwitt = new Twitter(content, 'twitt', mainTwitt, `${localUserData.userName}`)
+  let newTwitt = new Twitter(content, 'twitt', mainTwitt, 'Luke Nguyen')
 
   //Update the UI and reset UI
   area.innerHTML = newTwitt.displayHTML(null) + area.innerHTML
@@ -307,8 +344,8 @@ async function deleteTwitt(id) {
 
   //delete twitt with 'id' and hide it away
   delete allTwitts[id]
-  $(`#card-${id}`).first().hide(1500)
-  await sleep(1500)
+  $(`#card-${id}`).first().hide(1000)
+  await sleep(1000)
 
   if (thisTwitt.type === 'twitt') {
     //Get an array of all twitts in parent twitt
@@ -472,11 +509,6 @@ function stillExist(id) {
 //This part illustrate the sliding trending bars
 let lst = ['trending1', 'trending2', 'trending3', 'trending4']
 
-//Function to make the program sleep for miliseconds
-function sleep(miliseconds) {
-  return new Promise(resolve => setTimeout(resolve, miliseconds))
-}
-
 //Function to keep the bar sliding - Recursion
 async function cycle(N) {
   //Sleep for 1s until next section
@@ -488,17 +520,20 @@ async function cycle(N) {
   let lastli = $(`#last-li`).first()
 
   //Hide the removed bar and sleep for 1s to avoid time collision -> then remove it from HTML
-  li.hide(N); await sleep(N); li.detach()
+  li.hide(N);
+  await sleep(N);
+  li.detach()
 
   //Make the deleted bar disappear
   li.attr('style', 'display:none')
   lastli.before(li)
 
   //Show the bar for 1s and sleep for 1s to avoid time collision
-  li.show(N); await sleep(N)
+  li.show(N);
+  await sleep(N)
 
   //Push the deleted to the end of the list
   lst.push(elt)
   cycle(N)
 }
-cycle(2500)
+cycle(3000)
